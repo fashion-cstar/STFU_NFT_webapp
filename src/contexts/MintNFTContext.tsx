@@ -36,6 +36,8 @@ export interface IMintStatus {
     isTransferEnabled: boolean
     tokenPerMint: BigNumber
     bnbPerMint: BigNumber
+    maxSupply: number
+    maxBalance: number
 }
 
 export interface INFTContext {
@@ -48,7 +50,7 @@ export interface INFTContext {
     mintStatus: IMintStatus
     mintCallback: (tokenURI: string, amount: BigNumber) => Promise<any>
     burnCallback: (tokenIds: BigNumber[]) => Promise<any>
-    tokenURICallback: (tokenId:BigNumber) => Promise<any>
+    tokenURICallback: (tokenId: BigNumber) => Promise<any>
     approveCallback: (to: string, tokenId: BigNumber) => Promise<any>
     transferFromCallback: (from: string, to: string, tokenId: BigNumber) => Promise<any>
     updateNFTStats: () => void
@@ -69,7 +71,7 @@ export const NFTProvider = ({ children = null as any }) => {
     const [userNfts, setUserNFTS] = useState<IUserMintInfo>()
     const [mintStatus, setMintStatus] = useState<IMintStatus>()
     const [blockTimestamp, setBlockTimestamp] = useState(0)
-
+    
     useEffect(() => {
         if (nativeBalance) {
             setBnbBalance(nativeBalance)
@@ -181,6 +183,16 @@ export const NFTProvider = ({ children = null as any }) => {
         return res
     }
 
+    const fetchMaxSupply = async (NFTContract: Contract) => {
+        const res = await NFTContract.MAX_SUPPLY()
+        return res
+    }
+
+    const fetchMaxBalance = async (NFTContract: Contract) => {
+        const res = await NFTContract.maxBalance()
+        return res
+    }
+
     const updateNFTStats = async () => {
         const chainId = getChainIdFromName(blockchain);
         const NFTContract: Contract = getContract(NFTContractAddress, nft_abi, RpcProviders[chainId], account ? account : undefined)
@@ -196,6 +208,14 @@ export const NFTProvider = ({ children = null as any }) => {
             setMintStatus((item: IMintStatus) => ({ ...item, bnbPerMint: result }))
         }).catch(error => { console.log(error) })
 
+        fetchMaxSupply(NFTContract).then(result => {
+            setMintStatus((item: IMintStatus) => ({ ...item, maxSupply: Number(result) }))
+        }).catch(error => { console.log(error) })
+
+        fetchMaxBalance(NFTContract).then(result => {
+            setMintStatus((item: IMintStatus) => ({ ...item, maxBalance: Number(result) }))
+        }).catch(error => { console.log(error) })
+
         if (account) {
             const tokenContract: Contract = getContract(AppTokenAddress, ERC20_ABI, RpcProviders[chainId], account ? account : undefined)
             try {
@@ -207,7 +227,7 @@ export const NFTProvider = ({ children = null as any }) => {
             try {
                 const bal = await NFTContract.balanceOf(account)
                 const res = await NFTContract.getNFTSofAddress(account)
-                setUserNFTS({balance: Number(bal), tokens:res.tokens, nfts:res.nfts})
+                setUserNFTS({ balance: Number(bal), tokens: res.tokens, nfts: res.nfts })
             } catch (e) { }
         } else {
             setStfuBalance(BigNumber.from(0))
@@ -219,18 +239,18 @@ export const NFTProvider = ({ children = null as any }) => {
         <NFTContext.Provider
             value={{
                 totalSupply,
-    bnbBalance,
-    stfuBalance,
-    nfts,
-    userNfts,
-    blockTimestamp,
-    mintStatus,
-    mintCallback,
-    burnCallback,
-    tokenURICallback,
-    approveCallback,
-    transferFromCallback,
-    updateNFTStats,
+                bnbBalance,
+                stfuBalance,
+                nfts,
+                userNfts,
+                blockTimestamp,
+                mintStatus,
+                mintCallback,
+                burnCallback,
+                tokenURICallback,
+                approveCallback,
+                transferFromCallback,
+                updateNFTStats,
             }}
         >
             {children}

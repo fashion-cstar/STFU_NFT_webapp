@@ -176,7 +176,7 @@ export const MintPane = () => {
                 loadingPosition="start"
                 color="primary"
                 onClick={onApprove}
-                disabled={isApproved || isCheckingAllowance || amount<=0 || stfuBalance.lt(reqSTFU) || !account}
+                disabled={isApproved || isCheckingAllowance || amount<=0 || bnbBalance.lt(reqBNB) || stfuBalance.lt(reqSTFU) || !account}
             >
                 <span className='text-[26px] text-[#000000]'>{isWalletApproving ? 'Approving ...' : isApproved ? "Approved" : "Approve"}</span>
             </LoadingButton>}

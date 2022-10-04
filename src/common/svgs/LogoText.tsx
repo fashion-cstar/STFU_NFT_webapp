@@ -1,4 +1,3 @@
-
 import createSvg from "./createSvg";
 
 export default createSvg((props) => (

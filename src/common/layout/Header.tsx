@@ -43,7 +43,7 @@ export default function Header() {
               >
                 <div className={`${isActive ? '' : 'cursor-pointer'}`} onClick={() => onClickMenu(SIDEBAR_ROUTES[key], isActive)}>
                   <span className='text-[20px] text-white font-medium'>{SIDEBAR_ITEMS[key]}</span>
-                  <div className={`bg-[#7F41E4] h-0.5 w-full ${isActive ? 'block' : 'hidden'}`}></div>
+                  <div className={`bg-app-purple h-0.5 w-full ${isActive ? 'block' : 'hidden'}`}></div>
                 </div>
               </Tooltip>
             </div>

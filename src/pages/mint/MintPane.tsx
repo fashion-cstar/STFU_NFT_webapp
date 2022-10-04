@@ -128,8 +128,7 @@ export const MintPane = () => {
         for (let i = totalSupply + 1; i <= totalSupply + amount; i++) {
             tokenURIs[i - totalSupply - 1] = MetaData_base_URL + "/" + i + ".json"
         }
-        try {
-            console.log(tokenURIs, reqSTFU, reqBNB, formatEther(reqSTFU, 18, 2, false), formatEther(reqBNB, 18, 2, false))
+        try {            
             mintCallback(tokenURIs, reqSTFU, reqBNB).then((res: any) => {
                 if (res.status === 1) {
                     updateNFTStats()

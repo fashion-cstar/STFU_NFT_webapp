@@ -252,4 +252,4 @@ export const getShortenAmount = (amount: number, fixed: number): string => {
     return res.toFixed(getFixedDecimals(res, fixed)) + unit
 }
 
-export const maxStakingAmount = 1000000000
+export const maxAmount = 1000000000

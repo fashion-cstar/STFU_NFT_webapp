@@ -7,13 +7,12 @@ import { useNFT } from 'src/contexts'
 import { formatEther } from '@ethersproject/units'
 
 export const Mint = () => {
-    const { mintStatus } = useNFT()
+    const { tokenPerMint, bnbPerMint } = useNFT()
 
     return (
         <div className="w-full">
             <div className="w-full relative pt-[53px]">
                 <div className={`absolute left-[0px] top-[-10px] h-[53px] bg-[#6FFF39] bg-center bg-repeat-x bg-[url('./assets/nft_mobile_side.svg')] lg:bg-[url('./assets/nft_desktop_side.svg')]`} style={{ width: 'calc(100% + 190px)' }}>
-
                 </div>
                 <div className='w-full flex flex-col xl:flex-row justify-center xl:items-end gap-2 px-8'>
                     <div className='flex flex-col lg:flex-row items-center justify-center lg:gap-4 leading-[1] mint-title-shadow lg:mt-4 xl:mt-8'>
@@ -59,7 +58,7 @@ export const Mint = () => {
                         <div className='hidden lg:block w-full bg-app-purple'>
                             <MintPane />
                         </div>
-                        <div className='mt-8 mb-12 px-5 lg:pr-8 lg:pl-0 font-semibold' style={{ fontFamily: 'Bebas' }}>
+                        <div className='mt-8 mb-12 px-5 lg:pr-8 lg:pl-0 font-semibold leading-[1.4]' style={{ fontFamily: 'Bebas' }}>
                             <div className='w-full max-w-[700px] text-[#000] text-[20px] lg:text-[25px] uppercase'>
                                 The Mad Scientist NFT collection isn’t just your average ’PFP’ avatar NFT. It is a gateway into the STFU Labs NFT and De-Fi ecosystem. These exclusive ‘Scientists’ all have their own personality and character traits that make them unique by any definition. The entire collection was hand-painted by accomplished artist and STFU Labs lead graphics designer Charon Mortis.
                                 <br /><br />
@@ -67,7 +66,7 @@ export const Mint = () => {
                             </div>
                             <br />
                             <div className='w-full max-w-[700px] text-[#7F41E4] text-[20px] lg:text-[25px] uppercase'>
-                                {`*each mint costs ${formatEther(mintStatus.tokenPerMint)} $STFU and ${formatEther(mintStatus.bnbPerMint)} BNB. Once nfts are minted you cannot undo this action`}
+                                {`*each mint costs ${formatEther(tokenPerMint)} $STFU and ${formatEther(bnbPerMint)} BNB. Once nfts are minted you cannot undo this action`}
                             </div>
                         </div>
                     </div>

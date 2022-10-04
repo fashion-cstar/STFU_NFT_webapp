@@ -8,9 +8,8 @@ import Layout from 'src/common/layout/Layout'
 import { RefreshContextProvider } from "src/contexts"
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
-import { Staking, Home } from 'src/pages'
-import { StakingProvider } from 'src/contexts'
-import { StakingProviderV2 } from './contexts/StakingContextV2';
+import { Mint, Home } from 'src/pages'
+import { NFTProvider } from 'src/contexts'
 
 // mainet
 const config: Config = {
@@ -28,23 +27,21 @@ function App() {
     <DAppProvider config={config}>
       <ThemeProvider theme={theme}>
         <RefreshContextProvider>
-          <StakingProvider>
-            <StakingProviderV2>
+          <NFTProvider>            
               <BrowserRouter>
                 <Layout>
                   <Routes>
-                    <Route path="/staking" element={<Staking />} />
+                    <Route path="/mint" element={<Mint />} />
                     <Route path="/home" element={<Home />} />
                     <Route
                       path="*"
-                      element={<Navigate to="/staking" replace />}
+                      element={<Navigate to="/mint" replace />}
                     />
                   </Routes>
                 </Layout>
               </BrowserRouter>
-              <ToastContainer />
-            </StakingProviderV2>
-          </StakingProvider>
+              <ToastContainer />            
+          </NFTProvider>
         </RefreshContextProvider>
       </ThemeProvider>
     </DAppProvider>

@@ -25,7 +25,7 @@ export const MintPane = () => {
     const [isCheckingAllowance, setIsCheckingAllowance] = useState(false)
 
     useEffect(() => {
-        if (mintStatus) {
+        if (mintStatus) {            
             if (mintStatus.isPaymentForMint) {
                 setReqBNB(bnbPerMint.mul(BigNumber.from(amount)))
                 setReqSTFU(tokenPerMint.mul(BigNumber.from(amount)))
@@ -135,7 +135,7 @@ export const MintPane = () => {
         for (let i = totalSupply + 1; i <= totalSupply + amount; i++) {
             tokenURIs[i - totalSupply - 1] = MetaData_base_URL + "/" + i + ".json"
         }
-        try {
+        try {            
             mintCallback(tokenURIs, reqSTFU, reqBNB).then((res: any) => {
                 if (res.status === 1) {
                     updateNFTStats()

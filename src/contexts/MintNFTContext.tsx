@@ -205,8 +205,8 @@ export const NFTProvider = ({ children = null as any }) => {
     const updateNFTStats = async () => {
         const chainId = getChainIdFromName(blockchain);
         const NFTContract: Contract = getContract(NFTContractAddress, nft_abi, RpcProviders[chainId], account ? account : undefined)
-        fetchContractStatus(NFTContract).then(async (result: any) => {
-            setMintStatus({ isMintingEnabled: result.isMintingEnabled, isPaymentForMint: result.isPaymentForMint, isBurningEnabled: result.isBurningEnabled, isTransferEnabled: result.isTransferEnabled })
+        fetchContractStatus(NFTContract).then(async (result: any) => {            
+            setMintStatus({ isMintingEnabled: result.isMintingEnabled, isPaymentForMint: result.isTokenPaymentEnabled, isBurningEnabled: result.isBurningEnabled, isTransferEnabled: result.isTransferEnabled })
         }).catch(error => { console.log(error) })
 
         fetchTokenPerMint(NFTContract).then(result => {

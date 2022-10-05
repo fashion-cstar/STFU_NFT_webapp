@@ -25,9 +25,16 @@ export const MintPane = () => {
     const [isCheckingAllowance, setIsCheckingAllowance] = useState(false)
 
     useEffect(() => {
-        setReqBNB(bnbPerMint.mul(BigNumber.from(amount)))
-        setReqSTFU(tokenPerMint.mul(BigNumber.from(amount)))
-    }, [bnbPerMint, tokenPerMint, amount])
+        if (mintStatus) {
+            if (mintStatus.isPaymentForMint) {
+                setReqBNB(bnbPerMint.mul(BigNumber.from(amount)))
+                setReqSTFU(tokenPerMint.mul(BigNumber.from(amount)))
+            } else {
+                setReqBNB(BigNumber.from(0))
+                setReqSTFU(BigNumber.from(0))
+            }
+        }
+    }, [bnbPerMint, tokenPerMint, amount, mintStatus])
 
     const init = () => {
         setIsApproved(false)
@@ -128,7 +135,7 @@ export const MintPane = () => {
         for (let i = totalSupply + 1; i <= totalSupply + amount; i++) {
             tokenURIs[i - totalSupply - 1] = MetaData_base_URL + "/" + i + ".json"
         }
-        try {            
+        try {
             mintCallback(tokenURIs, reqSTFU, reqBNB).then((res: any) => {
                 if (res.status === 1) {
                     updateNFTStats()
@@ -176,7 +183,7 @@ export const MintPane = () => {
                 loadingPosition="start"
                 color="primary"
                 onClick={onApprove}
-                disabled={isApproved || isCheckingAllowance || amount<=0 || bnbBalance.lt(reqBNB) || stfuBalance.lt(reqSTFU) || !account}
+                disabled={isApproved || isCheckingAllowance || amount <= 0 || bnbBalance.lt(reqBNB) || stfuBalance.lt(reqSTFU) || !account}
             >
                 <span className='text-[26px] text-[#000000]'>{isWalletApproving ? 'Approving ...' : isApproved ? "Approved" : "Approve"}</span>
             </LoadingButton>}

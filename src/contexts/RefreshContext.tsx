@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 const FAST_INTERVAL = 10000
 const SLOW_INTERVAL = 60000
 
-const RefreshContext = React.createContext({ slow: 0, fast: 0, triggerRefresh: () => {} })
+const RefreshContext = React.createContext({ slow: 0, fast: 0, triggerRefresh: () => { } })
 
 // Check if the tab is active in the user browser
 const useIsBrowserTabActive = () => {
@@ -25,7 +25,7 @@ const useIsBrowserTabActive = () => {
 }
 
 // This context maintain 2 counters that can be used as a dependencies on other hooks to force a periodic refresh
-const RefreshContextProvider = ({ children }:{children:any}) => {
+const RefreshContextProvider = ({ children }: { children: any }) => {
   const [slow, setSlow] = useState(0)
   const [fast, setFast] = useState(0)
   const isBrowserTabActiveRef = useIsBrowserTabActive()
@@ -52,7 +52,7 @@ const RefreshContextProvider = ({ children }:{children:any}) => {
     }, SLOW_INTERVAL)
     return () => clearInterval(interval)
   }, [isBrowserTabActiveRef])
-  
+
   return <RefreshContext.Provider value={{ slow, fast, triggerRefresh }}>{children}</RefreshContext.Provider>
 }
 

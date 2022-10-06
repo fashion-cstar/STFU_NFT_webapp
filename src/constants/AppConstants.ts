@@ -59,7 +59,7 @@ export const RpcProviders: { [chainId in ChainId]?: JsonRpcProvider } = {
 
 export const AppTokenAddress = "0x4D0cC4786b383e2C7846bA994546B85954924802"
 
-export const NFTContractAddress = "0xC555DB6267428737C7269293Daa488d1DfBC13a2"
+export const NFTContractAddress = "0xA9345DabCc96D57ed48a0C69b54D465774dAa43D"
 
 export const AppTokenLP = "0x8dEC588B847d88D3ff7fA7FA76a925a5390361F2"
 

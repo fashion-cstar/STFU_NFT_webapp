@@ -160,7 +160,7 @@ export const MintPane = () => {
     return (
         <div className="w-full max-w-[700px] flex flex-col gap-2 items-center py-2">
             <div className='text-[25px] text-white uppercase text-center' style={{ textShadow: '2px 2px #000000' }}>
-                ammount to mint:
+                amount to mint:
             </div>
             <div className='flex items-center justify-center gap-8 md:gap-10'>
                 <div className={`${amount <= 1 || availableAmount === 0 ? 'bg-[#404040]' : 'cursor-pointer bg-[#000]'} rounded-[5px] w-[30px] h-[30px] flex justify-center items-center`} onClick={handleDec}>
@@ -176,7 +176,7 @@ export const MintPane = () => {
                     </svg>
                 </div>
             </div>
-            {!isApproved && <LoadingButton
+            {/* {!isApproved && <LoadingButton
                 variant="contained"
                 sx={{ width: "280px", height: '50px', fontFamily: 'agressive', boxShadow: '3px 3px #000' }}
                 loading={isWalletApproving}
@@ -197,7 +197,7 @@ export const MintPane = () => {
                 disabled={!account || bnbBalance.lt(reqBNB) || stfuBalance.lt(reqSTFU) || amount <= 0 || !userNfts}
             >
                 <span className='text-[28px] text-[#000000] uppercase'>{isMinting ? 'Minting...' : 'mint now*'}</span>
-            </LoadingButton>}
+            </LoadingButton>} */}
             <div className='w-full flex flex-col'>
                 <div className='text-[20px] text-white uppercase font-normal text-center flex gap-4 justify-center w-full' style={{ fontFamily: 'Bebas' }}>
                     {userNfts && <div>your minted nfts:{' '}<span className='text-[#6FFF39]'>{userNfts.balance}</span></div>}

@@ -4,7 +4,7 @@ import { useEthers } from '@usedapp/core'
 import { BigNumber } from 'ethers'
 import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
-import { AppTokenAddress, MetaData_base_URL, NFTContractAddress } from 'src/constants/AppConstants'
+import { AppTokenAddress, NFTContractAddress } from 'src/constants/AppConstants'
 import { useNFT } from 'src/contexts'
 import { formatEther, maxAmount } from 'src/utils'
 import { useApproveCallback, useTokenAllowance } from 'src/hooks/hooks'
@@ -130,13 +130,9 @@ export const MintPane = () => {
     }
 
     const onMint = async () => {
-        setIsMinting(true)
-        let tokenURIs: string[] = []
-        for (let i = totalSupply + 1; i <= totalSupply + amount; i++) {
-            tokenURIs[i - totalSupply - 1] = MetaData_base_URL + "/" + i + ".json"
-        }
+        setIsMinting(true)   
         try {            
-            mintCallback(tokenURIs, reqSTFU, reqBNB).then((res: any) => {
+            mintCallback(BigNumber.from(amount), reqSTFU, reqBNB).then((res: any) => {
                 if (res.status === 1) {
                     updateNFTStats()
                     toast.success(`Successfully Minted!`)
@@ -176,7 +172,7 @@ export const MintPane = () => {
                     </svg>
                 </div>
             </div>
-            {/* {!isApproved && <LoadingButton
+            {!isApproved && <LoadingButton
                 variant="contained"
                 sx={{ width: "280px", height: '50px', fontFamily: 'agressive', boxShadow: '3px 3px #000' }}
                 loading={isWalletApproving}
@@ -197,7 +193,7 @@ export const MintPane = () => {
                 disabled={!account || bnbBalance.lt(reqBNB) || stfuBalance.lt(reqSTFU) || amount <= 0 || !userNfts}
             >
                 <span className='text-[28px] text-[#000000] uppercase'>{isMinting ? 'Minting...' : 'mint now*'}</span>
-            </LoadingButton>} */}
+            </LoadingButton>}
             <div className='w-full flex flex-col'>
                 <div className='text-[20px] text-white uppercase font-normal text-center flex gap-4 justify-center w-full' style={{ fontFamily: 'Bebas' }}>
                     {userNfts && <div>your minted nfts:{' '}<span className='text-[#6FFF39]'>{userNfts.balance}</span></div>}

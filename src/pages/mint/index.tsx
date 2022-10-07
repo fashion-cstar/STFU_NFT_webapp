@@ -12,7 +12,7 @@ export const Mint = () => {
     return (
         <div className="w-full">
             <div className="w-full relative pt-[53px]">
-                <div className={`absolute left-[0px] top-[-10px] h-[53px] bg-[#6FFF39] bg-center bg-repeat-x bg-[url('./assets/nft_mobile_side.svg')] lg:bg-[url('./assets/nft_desktop_side.svg')]`} style={{ width: 'calc(100% + 190px)' }}>
+                <div className={`w-full absolute left-[0px] top-[-10px] h-[53px] bg-[#6FFF39] bg-center bg-repeat-x bg-[url('./assets/nft_mobile_side.svg')] lg:bg-[url('./assets/nft_desktop_side.svg')]`}>
                 </div>
                 <div className='w-full flex flex-col xl:flex-row justify-center xl:items-end gap-2 px-8'>
                     <div className='flex flex-col lg:flex-row items-center justify-center lg:gap-4 leading-[1] mint-title-shadow lg:mt-4 xl:mt-8'>
@@ -71,7 +71,7 @@ export const Mint = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`absolute left-[0px] bottom-[-30px] h-[50px] lg:h-[30px] bg-[#6FFF39] bg-center lg:bg-top bg-repeat-x bg-[url('./assets/nft_mobile_side.svg')] lg:bg-[url('./assets/nft_desktop_side.svg')]`} style={{ width: 'calc(100% + 190px)' }}>
+                <div className={`w-full absolute left-[0px] bottom-[-30px] h-[50px] lg:h-[30px] bg-[#6FFF39] bg-center lg:bg-top bg-repeat-x bg-[url('./assets/nft_mobile_side.svg')] lg:bg-[url('./assets/nft_desktop_side.svg')]`}>
                 </div>
             </div>
         </div>

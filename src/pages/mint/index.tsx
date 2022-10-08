@@ -16,8 +16,8 @@ export const Mint = () => {
                 </div>
                 <div className='w-full flex flex-col xl:flex-row justify-center xl:items-end gap-2 px-8'>
                     <div className='flex flex-col lg:flex-row items-center justify-center lg:gap-4 leading-[1] mint-title-shadow lg:mt-4 xl:mt-8'>
-                        <span className='lg:text-[60px] text-[50px] text-[#000] uppercase'>mad</span>
-                        <span className='lg:text-[60px] text-[50px] text-[#000] uppercase'>scientists</span>
+                        <span className='lg:text-[60px] sm:text-[50px] text-[40px] text-[#000] uppercase'>mad</span>
+                        <span className='lg:text-[60px] sm:text-[50px] text-[40px] text-[#000] uppercase'>scientists</span>
                     </div>
                     <div className='hidden lg:flex mb-2 px-4 justify-center'>
                         <MintBy_desktop />

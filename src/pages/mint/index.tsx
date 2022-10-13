@@ -10,8 +10,8 @@ export const Mint = () => {
     const { tokenPerMint, bnbPerMint } = useNFT()
 
     return (
-        <div className="w-full">
-            <div className="w-full relative pt-[53px]">
+        <div className="w-full" style={{display: 'flex', flexFlow: 'column'}}>
+            <div className="w-full relative pt-[53px]" style={{flex: '1 1 auto'}}>
                 <div className={`w-full absolute left-[0px] top-[-10px] h-[53px] bg-[#6FFF39] bg-center bg-repeat-x bg-[url('./assets/nft_mobile_side.svg')] lg:bg-[url('./assets/nft_desktop_side.svg')]`}>
                 </div>
                 <div className='w-full flex flex-col xl:flex-row justify-center xl:items-end gap-2 px-8'>

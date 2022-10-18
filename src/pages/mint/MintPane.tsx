@@ -91,7 +91,7 @@ export const MintPane = () => {
                     console.log(error)
                     setIsWalletApproving(false)
                     let err: any = error
-                    toast.error((err.data?.message || err?.message || err).toString())
+                    toast.error((err?.code || err.data?.message || err?.message || err).toString())
                 })
             } catch (error) {
                 console.log(error)
@@ -144,7 +144,7 @@ export const MintPane = () => {
                 setIsMinting(false)
                 console.log(error)
                 let err: any = error
-                toast.error((err.data?.message || err?.message || err).toString())
+                toast.error((err?.code || err.data?.message || err?.message || err).toString())
             })
         } catch (error) {
             setIsMinting(false)

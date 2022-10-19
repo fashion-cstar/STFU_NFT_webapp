@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 import { AppTokenAddress, NFTContractAddress } from 'src/constants/AppConstants'
 import { useNFT } from 'src/contexts'
-import { formatEther, maxAmount } from 'src/utils'
+import { decodeTxErrorMessage, formatEther, maxAmount } from 'src/utils'
 import { useApproveCallback, useTokenAllowance } from 'src/hooks/hooks'
 import { debounce } from "lodash"
 
@@ -91,7 +91,7 @@ export const MintPane = () => {
                     console.log(error)
                     setIsWalletApproving(false)
                     let err: any = error
-                    toast.error((err?.code || err.data?.message || err?.message || err).toString())
+                    toast.error(decodeTxErrorMessage(err))
                 })
             } catch (error) {
                 console.log(error)
@@ -144,7 +144,7 @@ export const MintPane = () => {
                 setIsMinting(false)
                 console.log(error)
                 let err: any = error
-                toast.error((err?.code || err.data?.message || err?.message || err).toString())
+                toast.error(decodeTxErrorMessage(err))
             })
         } catch (error) {
             setIsMinting(false)
